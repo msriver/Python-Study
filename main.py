@@ -1,27 +1,13 @@
+arr = [5, 3, 2, 5, 7, 1, 4, 6, 4, 3, 8, 2]
+x = 5
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+sliding_window = sum(arr[:x]) # 처음 x개의 합 구하기, 0번부터 x-1번까지
+print('sliding window start', sliding_window)
 
-    def __str__(self):
-        res = str(self.val)
-        current = self.next
-        while current:
-            res += ' - > ' + str(current.val)
-            current = current.next
-        return res
-
-class Solution:
-    def reverseBetween(self, head, left: int, right: int):
-
-        prev_left = left_node = None
-
-        for _ in range(left):
-            if left_node is None:
-                left_node = head
-            else:
-                prev_left = left_node
-                left_node = left_node.next
+# x-1번 인덱스의 값들의 합을 구했으므로 반복문은 x번 인덱스부터 시작.
+for i in range(x, len(arr)):
+	sliding_window -= arr[i - x]
+	sliding_window += arr[i]
+	print(sliding_window)
 
 
